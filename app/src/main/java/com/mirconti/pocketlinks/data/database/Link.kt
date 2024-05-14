@@ -10,5 +10,6 @@ data class Link (
     val url: String,
     val category: String?,
     val type: String?,
+    val favourite: Boolean?
 )
 

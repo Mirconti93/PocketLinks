@@ -1,66 +1,65 @@
 package com.mircontapp.sportalbum.data.datasource
 
 import com.mircontapp.sportalbum.data.database.AppDatabase
+import com.mircontapp.sportalbum.data.database.Category
+import com.mircontapp.sportalbum.data.database.Link
 import com.mircontapp.sportalbum.domain.models.CategoryModel
 import com.mircontapp.sportalbum.domain.models.LinkModel
 import com.mirconti.pocketlinks.PocketApplication
 
 
 class DatabaseDataSource : PocketDataSource {
-    private val players: MutableList<CategoryModel> = ArrayList()
-    private val teams: MutableList<LinkModel> = ArrayList()
+    private val links: MutableList<LinkModel> = ArrayList()
+    private val teams: MutableList<CategoryModel> = ArrayList()
     val database: AppDatabase?
 
     init {
        database = AppDatabase.getInstance(PocketApplication.instance.applicationContext)
     }
 
-    override suspend fun fetchLinks(): List<CategoryModel>? {
-        if (players.isEmpty()) {
-            database?.linkDao()?.getAll()?.forEach { player ->
-                players.add(DataMapper.playerModelFromEntity(player))
+    override suspend fun fetchLinks(): List<LinkModel>? {
+        if (links.isEmpty()) {
+            database?.linkDao()?.getAll()?.forEach { link ->
+                links.add(DataMapper.linkModelFromEntity(link))
             }
         }
-        return players
+        return links
     }
 
-    override suspend fun fetchCategories(): List<LinkModel>? {
+    override suspend fun fetchCategories(): List<CategoryModel>? {
         if (teams.isEmpty()) {
             database?.categoryDao()?.getAll()?.forEach {
-                    team ->teams.add(DataMapper.teamModelFromEntity(team))
+                    team ->teams.add(DataMapper.categoryModelFromEntity(team))
             }
         }
 
         return teams
     }
 
-    override suspend fun insertLink(categoryModel: CategoryModel) {
-        database?.linkDao()?.insert(DataMapper.entityFromPlayerModel(categoryModel))
+    override suspend fun insertLink(linkModel: LinkModel) {
+        database?.linkDao()?.insert(DataMapper.entityFromLinkModel(linkModel))
+    }
+
+    override suspend fun updateLink(linkModel: LinkModel) {
+        database?.linkDao()?.update(DataMapper.entityFromLinkModel(linkModel))
+    }
+
+    override suspend fun deleteLink(linkModel: LinkModel) {
+        database?.linkDao()?.delete(DataMapper.entityFromLinkModel(linkModel))
+    }
+
+    override suspend fun insertCategory(categoryModel: CategoryModel) {
+       database?.categoryDao()?.insert(DataMapper.entityFromCategoryModel(categoryModel))
     }
 
     override suspend fun updateCategory(categoryModel: CategoryModel) {
-        database?.linkDao()?.update(DataMapper.entityFromPlayerModel(categoryModel))
+        database?.categoryDao()?.update(DataMapper.entityFromCategoryModel(categoryModel))
     }
 
-    override suspend fun updateTeam(linkModel: LinkModel) {
-        database?.categoryDao()?.update(DataMapper.entityFromTeamModel(linkModel))
+    override suspend fun deleteCategory(categoryModel: CategoryModel) {
+        database?.categoryDao()?.delete(DataMapper.entityFromCategoryModel(categoryModel))
     }
 
-    override suspend fun insertTeam(linkModel: LinkModel) {
-        database?.categoryDao()?.insert(DataMapper.entityFromTeamModel(linkModel))
-    }
-
-    fun insertAllTeams(teams: List<LinkModel>?) {
-        val teamsEntities = ArrayList<Team>()
-        teams?.forEach { teamsEntities.add(DataMapper.entityFromTeamModel(it)) }
-        database?.categoryDao()?.insertAll(teamsEntities)
-    }
-
-    fun insertAllPlayers(players: List<CategoryModel>?) {
-        val playerEntities = ArrayList<Player>()
-        players?.forEach { playerEntities.add(DataMapper.entityFromPlayerModel(it)) }
-        database?.linkDao()?.insertAll(playerEntities)
-    }
 
 
 }

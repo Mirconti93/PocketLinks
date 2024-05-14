@@ -1,17 +1,11 @@
 package com.mircontapp.sportalbum.commons.di
 
-import com.mircontapp.sportalbum.data.datasource.PocketDataSource
 import com.mircontapp.sportalbum.data.datasource.DatabaseDataSource
-import com.mircontapp.sportalbum.data.repository.PlayersRepositoryImpl
-import com.mircontapp.sportalbum.data.repository.TeamsRepositoryImpl
-import com.mircontapp.sportalbum.domain.repository.PlayersRepository
-import com.mircontapp.sportalbum.domain.repository.TeamsRepository
-import com.mircontapp.sportalbum.domain.usecases.GetAllPlayersUC
-import com.mircontapp.sportalbum.domain.usecases.GetAllTeamsUC
-import com.mircontapp.sportalbum.domain.usecases.GetTeamsFromAreaUC
-import com.mircontapp.sportalbum.domain.usecases.GetTeamsSuperlegaUC
-import com.mircontapp.sportalbum.domain.usecases.InsertTeamUC
-import com.mircontapp.sportalbum.domain.usecases.UpdateTeamUC
+import com.mircontapp.sportalbum.data.datasource.PocketDataSource
+import com.mircontapp.sportalbum.data.repository.CategoriesRepositoryImpl
+import com.mircontapp.sportalbum.data.repository.LinksRepositoryImpl
+import com.mircontapp.sportalbum.domain.repository.CategoriesRepository
+import com.mircontapp.sportalbum.domain.repository.LinksRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,47 +22,13 @@ class AppModule {
     }
 
     @Provides
-    fun provideTeamsRepository(): TeamsRepository {
-        return TeamsRepositoryImpl(provideAlbumDataSource())
+    fun provideTeamsRepository(): LinksRepository {
+        return LinksRepositoryImpl(provideAlbumDataSource())
     }
 
     @Provides
-    fun providePlayersRepository(): PlayersRepository {
-        return PlayersRepositoryImpl(provideAlbumDataSource())
+    fun providePlayersRepository(): CategoriesRepository {
+        return CategoriesRepositoryImpl(provideAlbumDataSource())
     }
-
-    @Provides
-    fun provideGetAllTeamsUC(): GetAllTeamsUC {
-        return GetAllTeamsUC(provideTeamsRepository())
-    }
-
-    @Provides
-    fun provideGetAllPlayersUC(): GetAllPlayersUC {
-        return GetAllPlayersUC(providePlayersRepository())
-    }
-
-
-    @Provides
-    fun provideGetTeamsFromArea(): GetTeamsFromAreaUC {
-        return GetTeamsFromAreaUC(provideTeamsRepository())
-    }
-
-    @Provides
-    fun provideUpdateTeam(): UpdateTeamUC {
-        return UpdateTeamUC(provideTeamsRepository())
-    }
-
-    @Provides
-    fun provideInsertTeam(): InsertTeamUC {
-        return InsertTeamUC(provideTeamsRepository())
-    }
-
-    @Provides
-    fun provideGetTeamsSuperlegaUC(): GetTeamsSuperlegaUC {
-        return GetTeamsSuperlegaUC(provideTeamsRepository())
-    }
-
-
-
 
 }
