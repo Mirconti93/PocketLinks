@@ -22,8 +22,8 @@ class LinksRepositoryImpl @Inject constructor(val pocketDataSource: PocketDataSo
         return pocketDataSource.fetchLinks() ?: emptyList()
     }
 
-    override suspend fun linksFromCategory(category: String): List<LinkModel> {
-        return getAllLinks().filter { category == it.category}
+    override suspend fun linksFromCategories(categories: List<String>): List<LinkModel> {
+        return getAllLinks().filter {categories.contains(it.category)}
     }
 
 

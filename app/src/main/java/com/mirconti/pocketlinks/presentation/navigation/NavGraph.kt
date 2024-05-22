@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.mircontapp.sportalbum.presentation.viewmodels.MainViewModel
-import com.mirconti.pocketlinks.presentation.screens.HomeScreen
+import com.mirconti.pocketlinks.presentation.ui.home.HomeScreen
 
 @ExperimentalMaterial3Api
 @Composable
