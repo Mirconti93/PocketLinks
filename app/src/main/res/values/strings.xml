@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Pocket Links</string>
+    <string name="edit">Modifica</string>
+    <string name="newitem">Nuovo</string>
 </resources>

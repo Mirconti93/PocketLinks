@@ -1,6 +1,5 @@
 package com.mircontapp.sportalbum.data.repository
 
-import com.mirco.sportalbum.utils.Enums
 import com.mircontapp.sportalbum.data.datasource.PocketDataSource
 import com.mircontapp.sportalbum.domain.models.CategoryModel
 import com.mircontapp.sportalbum.domain.models.LinkModel
@@ -10,7 +9,7 @@ import kotlin.collections.ArrayList
 
 class LinksRepositoryImpl @Inject constructor(val pocketDataSource: PocketDataSource) : LinksRepository {
 
-    override suspend fun addLink(linkModel: LinkModel) {
+    override suspend fun addLink(linkModel: LinkModel?) {
         pocketDataSource.insertLink(linkModel)
     }
 

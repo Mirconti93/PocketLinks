@@ -24,8 +24,8 @@ class HomeViewModel  @Inject constructor(val linksRepository: LinksRepository, v
     val selectedCategories : StateFlow<List<String>> get() =  _selectedCategories
     private val _selectedCategories: MutableStateFlow<List<String>> = MutableStateFlow(emptyList())
 
-    val links : StateFlow<List<LinkModel>> get() =  _links
-    private val _links: MutableStateFlow<List<LinkModel>> = MutableStateFlow(emptyList())
+    val links : LiveData<List<LinkModel>> get() =  _links
+    private val _links: MutableLiveData<List<LinkModel>> = MutableLiveData(emptyList())
 
     private val _allLinks = MutableLiveData<List<LinkModel>>(emptyList())
 
@@ -34,6 +34,7 @@ class HomeViewModel  @Inject constructor(val linksRepository: LinksRepository, v
             val allLinks = linksRepository.getAllLinks()
             withContext(Dispatchers.Main) {
                 _allLinks.value = allLinks
+                _links.value = allLinks
             }
         }
     }
