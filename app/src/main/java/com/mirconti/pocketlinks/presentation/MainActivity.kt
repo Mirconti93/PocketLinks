@@ -47,9 +47,8 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     bottomBar = {
                         BottomBarNavigation(navController, arrayListOf(
-                            NavigationItem.Album,
-                            NavigationItem.Dashboard,
-                            NavigationItem.Games
+                            NavigationItem.Home,
+                            NavigationItem.Edit
                         ))
                     }
                 ) { innerPadding ->
@@ -94,24 +93,15 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-
     }
 
-    @Composable
-    fun HomeButtons(name: String, modifier: Modifier = Modifier) {
-        Text(
-            text = "Hello $name!",
-            modifier = modifier,
-        )
-    }
 
     @Preview(showBackground = true)
     @Composable
     fun GreetingPreview() {
         BottomBarNavigation(navController = rememberNavController(), arrayListOf(
-            NavigationItem.Album,
-            NavigationItem.Dashboard,
-            NavigationItem.Games
+            NavigationItem.Home,
+            NavigationItem.Edit,
         ))
     }
 }

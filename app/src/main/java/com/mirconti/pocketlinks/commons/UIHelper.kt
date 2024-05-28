@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.res.Resources
 import androidx.compose.ui.graphics.Color
 import androidx.constraintlayout.widget.Placeholder
-import com.mircontapp.sportalbum.R
-import com.mircontapp.sportalbum.SportAlbumApplication
 import com.mircontapp.sportalbum.presentation.ui.theme.BlueD
 import com.mircontapp.sportalbum.presentation.ui.theme.Brown
 import com.mircontapp.sportalbum.presentation.ui.theme.Green
@@ -32,18 +30,6 @@ class UIHelper {
         const val BROWN = "marrone"
         const val VIOLET = "viola"
         const val PINK = "rosa"
-
-
-        fun getDrawableId(resourceName: String, placeholder: Int): Int {
-            val name = resourceName.replace(" ", "_").lowercase()
-            val id = try {
-                SportAlbumApplication.instance.resources.getIdentifier(name, "drawable", SportAlbumApplication.instance.packageName)
-            } catch (e: Exception) {
-                e.printStackTrace()
-                placeholder
-            }
-            return if (id > 0) id  else placeholder
-        }
 
         fun getColorByString(colorString: String?): Color {
             return when (colorString?.lowercase()) {

@@ -5,8 +5,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -21,19 +23,54 @@ fun EditScreen(navController: NavController) {
     val isnew = remember { true }
     val viewModel: EditViewModel = hiltViewModel()
 
-    Column {
-        Text(
-            text = PocketApplication.instance.getString(if (isnew) R.string.newitem else R.string.edit),
-            textAlign = TextAlign.Center,
-            color = Color.White
-        )
-        TextField(
-            value = viewModel.linkModel.value?.name ?: "",
-            onValueChange = {
+    viewModel.linkModel.value?.let {
+        val name = remember { mutableStateOf(TextFieldValue(it.name)) }
+        val url = remember { mutableStateOf(TextFieldValue(it.url)) }
+        val category = remember { mutableStateOf(TextFieldValue(it.category ?: "")) }
+        val tag = remember { mutableStateOf(TextFieldValue(it.tag ?: "")) }
 
-            },
-            label = { Text(text = "Your Label") },
-            placeholder = { Text(text = "Your Placeholder/Hint") },
-        )
+        Column {
+            Text(
+                text = PocketApplication.instance.getString(if (isnew) R.string.newitem else R.string.edit),
+                textAlign = TextAlign.Center,
+                color = Color.White
+            )
+            TextField(
+                value = name.value,
+                onValueChange = {
+                    name.value = it
+                },
+                label = { Text(text = "Your Label") },
+                placeholder = { Text(text = "") },
+            )
+            TextField(
+                value = url.value,
+                onValueChange = {
+                    url.value = it
+                },
+                label = { Text(text = "Your Label") },
+                placeholder = { Text(text = "") },
+            )
+            TextField(
+                value = category.value,
+                onValueChange = {
+                    category.value = it
+                },
+                label = { Text(text = "Your Label") },
+                placeholder = { Text(text = "") },
+            )
+            TextField(
+                value = tag.value,
+                onValueChange = {
+                    tag.value = it
+                },
+                label = { Text(text = "Your Label") },
+                placeholder = { Text(text = "") },
+            )
+        }
     }
+
+
+
+
 }

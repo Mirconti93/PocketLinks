@@ -12,7 +12,7 @@ class DataMapper {
                 name = link.name,
                 url = link.url,
                 category = link.category,
-                type = link.type,
+                type = link.tag,
                 favourite = link.favourite
             )
         }
@@ -22,7 +22,7 @@ class DataMapper {
                 name = link.name,
                 url = link.url,
                 category = link.category,
-                type = link.type,
+                tag = link.type,
                 favourite = link.favourite
             )
         }

@@ -8,7 +8,6 @@ class PocketApplication: Application() {
 
     companion object {
         lateinit var instance: PocketApplication
-
     }
 
     init {
@@ -20,3 +19,4 @@ class PocketApplication: Application() {
     }
 
 }
+

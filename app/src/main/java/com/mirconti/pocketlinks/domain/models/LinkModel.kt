@@ -4,6 +4,6 @@ data class LinkModel(
     val name: String,
     val url: String,
     val category: String?,
-    val type: String?,
+    val tag: String?,
     val favourite: Boolean?
 )

@@ -9,7 +9,7 @@ import kotlin.collections.ArrayList
 
 class LinksRepositoryImpl @Inject constructor(val pocketDataSource: PocketDataSource) : LinksRepository {
 
-    override suspend fun addLink(linkModel: LinkModel?) {
+    override suspend fun addLink(linkModel: LinkModel) {
         pocketDataSource.insertLink(linkModel)
     }
 

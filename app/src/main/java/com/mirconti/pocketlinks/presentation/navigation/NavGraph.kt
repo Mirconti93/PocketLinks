@@ -13,9 +13,12 @@ import com.mirconti.pocketlinks.presentation.ui.home.HomeScreen
 fun NavGraph(navController: NavHostController, mainViewModel: MainViewModel){
     NavHost(
         navController = navController,
-        startDestination = NavigationItem.Album.route)
+        startDestination = NavigationItem.Home.route)
     {
-        composable(route = NavigationItem.Album.route){
+        composable(route = NavigationItem.Home.route){
+            HomeScreen(navController = navController, mainViewModel)
+        }
+        composable(route = NavigationItem.Edit.route){
             HomeScreen(navController = navController, mainViewModel)
         }
     }
