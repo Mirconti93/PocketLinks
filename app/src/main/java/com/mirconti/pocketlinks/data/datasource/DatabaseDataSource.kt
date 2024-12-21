@@ -1,11 +1,10 @@
 package com.mircontapp.sportalbum.data.datasource
 
 import com.mircontapp.sportalbum.data.database.AppDatabase
-import com.mircontapp.sportalbum.data.database.Category
-import com.mircontapp.sportalbum.data.database.Link
 import com.mircontapp.sportalbum.domain.models.CategoryModel
 import com.mircontapp.sportalbum.domain.models.LinkModel
 import com.mirconti.pocketlinks.PocketApplication
+import com.mirconti.pocketlinks.domain.datasource.PocketDataSource
 
 
 class DatabaseDataSource : PocketDataSource {

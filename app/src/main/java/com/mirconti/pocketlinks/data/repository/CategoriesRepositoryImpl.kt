@@ -1,7 +1,6 @@
 package com.mircontapp.sportalbum.data.repository
 
-import com.mirco.sportalbum.utils.Enums
-import com.mircontapp.sportalbum.data.datasource.PocketDataSource
+import com.mirconti.pocketlinks.domain.datasource.PocketDataSource
 import com.mircontapp.sportalbum.domain.models.CategoryModel
 import com.mircontapp.sportalbum.domain.repository.CategoriesRepository
 

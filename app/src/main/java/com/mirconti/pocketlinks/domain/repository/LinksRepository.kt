@@ -6,7 +6,4 @@ interface LinksRepository {
     suspend fun getAllLinks(): List<LinkModel>
     suspend fun addLink(LinkModel: LinkModel)
     suspend fun deleteLink(linkModel: LinkModel)
-    suspend fun linksFromCategories(categories: List<String>) : List<LinkModel>
-
-
 }

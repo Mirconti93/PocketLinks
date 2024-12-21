@@ -8,7 +8,6 @@ import androidx.room.PrimaryKey
 data class Link (
     @PrimaryKey val name: String,
     val url: String,
-    val category: String?,
     val type: String?,
     val favourite: Boolean?
 )

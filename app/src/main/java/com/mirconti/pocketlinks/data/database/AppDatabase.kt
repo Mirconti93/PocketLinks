@@ -5,10 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Category::class, Link::class], version = 1)
+@Database(entities = [Category::class, Link::class, Association::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun linkDao(): LinkDao
     abstract fun categoryDao(): CategoryDao
+    abstract fun associationDao(): AssociationDao
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null
         fun getInstance(context: Context) : AppDatabase? {

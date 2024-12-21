@@ -10,5 +10,4 @@ interface CategoriesRepository {
     suspend fun updateCategory(categoryModel: CategoryModel)
     suspend fun deleteCategory(categoryModel: CategoryModel)
 
-    suspend fun getAllSubcategories(category: String): List<CategoryModel>
 }

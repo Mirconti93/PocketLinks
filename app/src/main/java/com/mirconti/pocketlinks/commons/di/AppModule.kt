@@ -1,11 +1,13 @@
 package com.mircontapp.sportalbum.commons.di
 
+import LinksByCategoryUC
 import com.mircontapp.sportalbum.data.datasource.DatabaseDataSource
-import com.mircontapp.sportalbum.data.datasource.PocketDataSource
+import com.mirconti.pocketlinks.domain.datasource.PocketDataSource
 import com.mircontapp.sportalbum.data.repository.CategoriesRepositoryImpl
 import com.mircontapp.sportalbum.data.repository.LinksRepositoryImpl
 import com.mircontapp.sportalbum.domain.repository.CategoriesRepository
 import com.mircontapp.sportalbum.domain.repository.LinksRepository
+import com.mirconti.pocketlinks.domain.usecases.GetAllLinksUC
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,5 +32,16 @@ class AppModule {
     fun providePlayersRepository(): CategoriesRepository {
         return CategoriesRepositoryImpl(provideAlbumDataSource())
     }
+
+    @Provides
+    fun provideGetAllLinksUC(): GetAllLinksUC {
+        return GetAllLinksUC(provideTeamsRepository())
+    }
+
+    @Provides
+    fun provideLinksByCategoryUC(): LinksByCategoryUC {
+        return LinksByCategoryUC(provideTeamsRepository())
+    }
+
 
 }

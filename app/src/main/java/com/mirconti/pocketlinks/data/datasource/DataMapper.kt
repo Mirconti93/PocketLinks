@@ -11,8 +11,7 @@ class DataMapper {
             return Link(
                 name = link.name,
                 url = link.url,
-                category = link.category,
-                type = link.tag,
+                type = link.type,
                 favourite = link.favourite
             )
         }
@@ -21,8 +20,8 @@ class DataMapper {
             return LinkModel(
                 name = link.name,
                 url = link.url,
-                category = link.category,
-                tag = link.type,
+                categories = emptyList(),
+                type = link.type,
                 favourite = link.favourite
             )
         }
