@@ -4,59 +4,78 @@ import com.mircontapp.sportalbum.data.database.AppDatabase
 import com.mircontapp.sportalbum.domain.models.CategoryModel
 import com.mircontapp.sportalbum.domain.models.LinkModel
 import com.mirconti.pocketlinks.PocketApplication
+import com.mirconti.pocketlinks.commons.associationModelFromEntity
+import com.mirconti.pocketlinks.commons.categoryModelFromEntity
+import com.mirconti.pocketlinks.commons.entityFromCategoryModel
+import com.mirconti.pocketlinks.commons.entityFromLinkModel
+import com.mirconti.pocketlinks.commons.linkModelFromEntity
 import com.mirconti.pocketlinks.domain.datasource.PocketDataSource
+import com.mirconti.pocketlinks.domain.models.AssociationModel
 
 
 class DatabaseDataSource : PocketDataSource {
     private val links: MutableList<LinkModel> = ArrayList()
-    private val teams: MutableList<CategoryModel> = ArrayList()
-    val database: AppDatabase?
+    private val categories: MutableList<CategoryModel> = ArrayList()
+    private val associations: MutableList<AssociationModel> = ArrayList()
+    private val database: AppDatabase? = AppDatabase.getInstance(PocketApplication.instance.applicationContext)
 
-    init {
-       database = AppDatabase.getInstance(PocketApplication.instance.applicationContext)
-    }
-
-    override suspend fun fetchLinks(): List<LinkModel>? {
-        if (links.isEmpty()) {
-            database?.linkDao()?.getAll()?.forEach { link ->
-                links.add(DataMapper.linkModelFromEntity(link))
+    private fun fetchAssociations(): List<AssociationModel>? {
+        if (associations.isEmpty()) {
+            database?.associationDao()?.getAll()?.forEach {
+                    association ->associations.add(association.associationModelFromEntity())
             }
         }
+
+        return associations
+    }
+
+    override suspend fun fetchLinks(): List<LinkModel> {
+        if (links.isEmpty()) {
+            fetchAssociations()
+            fetchCategories()
+            database?.linkDao()?.getAll()?.forEach { link ->
+                val associatedCategories = categories.filter { category-> associations.any { it.link === link.name && it.category === category.name} }
+                links.add(link.linkModelFromEntity(associatedCategories))
+            }
+        }
+
         return links
     }
 
-    override suspend fun fetchCategories(): List<CategoryModel>? {
-        if (teams.isEmpty()) {
-            database?.categoryDao()?.getAll()?.forEach {
-                    team ->teams.add(DataMapper.categoryModelFromEntity(team))
+    override suspend fun fetchCategories(): List<CategoryModel> {
+        if (categories.isEmpty()) {
+            database?.categoryDao()?.getAll()?.map {
+                it.categoryModelFromEntity()
+            }?.let{
+                categories.addAll(it)
             }
         }
 
-        return teams
+        return categories
     }
 
     override suspend fun insertLink(linkModel: LinkModel) {
-        database?.linkDao()?.insert(DataMapper.entityFromLinkModel(linkModel))
+        database?.linkDao()?.insert(linkModel.entityFromLinkModel())
     }
 
     override suspend fun updateLink(linkModel: LinkModel) {
-        database?.linkDao()?.update(DataMapper.entityFromLinkModel(linkModel))
+        database?.linkDao()?.update(linkModel.entityFromLinkModel())
     }
 
     override suspend fun deleteLink(linkModel: LinkModel) {
-        database?.linkDao()?.delete(DataMapper.entityFromLinkModel(linkModel))
+        database?.linkDao()?.delete(linkModel.entityFromLinkModel())
     }
 
     override suspend fun insertCategory(categoryModel: CategoryModel) {
-       database?.categoryDao()?.insert(DataMapper.entityFromCategoryModel(categoryModel))
+       database?.categoryDao()?.insert(categoryModel.entityFromCategoryModel())
     }
 
     override suspend fun updateCategory(categoryModel: CategoryModel) {
-        database?.categoryDao()?.update(DataMapper.entityFromCategoryModel(categoryModel))
+        database?.categoryDao()?.update(categoryModel.entityFromCategoryModel())
     }
 
     override suspend fun deleteCategory(categoryModel: CategoryModel) {
-        database?.categoryDao()?.delete(DataMapper.entityFromCategoryModel(categoryModel))
+        database?.categoryDao()?.delete(categoryModel.entityFromCategoryModel())
     }
 
 
