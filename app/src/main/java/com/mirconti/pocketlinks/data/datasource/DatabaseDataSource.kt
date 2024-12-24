@@ -34,7 +34,12 @@ class DatabaseDataSource : PocketDataSource {
             fetchAssociations()
             fetchCategories()
             database?.linkDao()?.getAll()?.forEach { link ->
-                val associatedCategories = categories.filter { category-> associations.any { it.link === link.name && it.category === category.name} }
+                var associatedCategories: MutableList<CategoryModel> = ArrayList()
+                associations.filter { it.link === link.name}.forEach { association->
+                    categories.find {it.name === association.category}?.let {
+                        associatedCategories.add(it)
+                    }
+                }
                 links.add(link.linkModelFromEntity(associatedCategories))
             }
         }
