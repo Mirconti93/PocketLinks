@@ -31,7 +31,7 @@ fun HomeScreen(navController: NavHostController, mainViewModel: MainViewModel) {
     val viewModel: HomeViewModel = hiltViewModel()
 
     LaunchedEffect((Unit), block = {
-        viewModel.fetchLinks()
+        viewModel.onAction(HomeAction.Load)
     })
     Column {
         Text(
@@ -40,9 +40,7 @@ fun HomeScreen(navController: NavHostController, mainViewModel: MainViewModel) {
             color = Color.White
         )
         LazyColumn {
-            item {
 
-            }
         }
 
 
