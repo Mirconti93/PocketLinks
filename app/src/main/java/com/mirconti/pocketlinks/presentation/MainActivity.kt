@@ -33,8 +33,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    val mainViewModel: MainViewModel by viewModels()
-
     @ExperimentalMaterial3Api
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +58,7 @@ class MainActivity : ComponentActivity() {
                         verticalArrangement = Arrangement.Top,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        NavGraph(navController = navController, mainViewModel = mainViewModel)
+                        NavGraph(navController = navController)
                     }
                 }
             }

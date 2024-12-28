@@ -10,16 +10,16 @@ import com.mirconti.pocketlinks.presentation.ui.home.HomeScreen
 
 @ExperimentalMaterial3Api
 @Composable
-fun NavGraph(navController: NavHostController, mainViewModel: MainViewModel){
+fun NavGraph(navController: NavHostController){
     NavHost(
         navController = navController,
         startDestination = NavigationItem.Home.route)
     {
         composable(route = NavigationItem.Home.route){
-            HomeScreen(navController = navController, mainViewModel)
+            HomeScreen(navController = navController)
         }
         composable(route = NavigationItem.Edit.route){
-            HomeScreen(navController = navController, mainViewModel)
+            HomeScreen(navController = navController)
         }
     }
 }

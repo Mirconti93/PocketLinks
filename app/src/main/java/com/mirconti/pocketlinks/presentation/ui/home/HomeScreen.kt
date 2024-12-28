@@ -27,7 +27,7 @@ import com.mirconti.pocketlinks.PocketApplication
 import com.mirconti.pocketlinks.R
 
 @Composable
-fun HomeScreen(navController: NavHostController, mainViewModel: MainViewModel) {
+fun HomeScreen(navController: NavHostController) {
     val viewModel: HomeViewModel = hiltViewModel()
 
     LaunchedEffect((Unit), block = {
