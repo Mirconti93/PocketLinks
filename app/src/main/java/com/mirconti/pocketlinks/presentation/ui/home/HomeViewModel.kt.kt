@@ -22,7 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel  @Inject constructor(val getAllLinksUC: GetAllLinksUC, val linksByCategoryUC: LinksByCategoryUC): ViewModel()  {
 
-    val selectedCategories : StateFlow<HomeState> get() =  _state
+    val state : StateFlow<HomeState> get() =  _state
     private val _state: MutableStateFlow<HomeState> = MutableStateFlow(HomeState())
 
 

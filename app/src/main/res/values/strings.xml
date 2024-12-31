@@ -2,4 +2,6 @@
     <string name="app_name">Pocket Links</string>
     <string name="edit">Modifica</string>
     <string name="newitem">Nuovo</string>
+
+    <string name="noitems">Non hai ancora inserito link, clicca sul bottone per aggiungerne uno nuovo</string>
 </resources>

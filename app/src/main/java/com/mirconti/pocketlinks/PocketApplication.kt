@@ -8,6 +8,10 @@ class PocketApplication: Application() {
 
     companion object {
         lateinit var instance: PocketApplication
+
+        fun getString(id: Int): String {
+            return instance.getString(id)
+        }
     }
 
     init {
@@ -17,6 +21,8 @@ class PocketApplication: Application() {
     override fun onCreate() {
         super.onCreate()
     }
+
+
 
 }
 
