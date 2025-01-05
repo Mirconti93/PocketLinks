@@ -11,8 +11,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -22,6 +28,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.mircontapp.sportalbum.presentation.navigation.NavGraph
@@ -43,12 +50,24 @@ class MainActivity : ComponentActivity() {
             PocketTheme {
                 // A surface container using the 'background' color from the theme
                 Scaffold(
-                    bottomBar = {
-                        BottomBarNavigation(navController, arrayListOf(
-                            NavigationItem.Home,
-                            NavigationItem.Edit
-                        ))
-                    }
+                    floatingActionButton = {
+                        Box {
+                            FloatingActionButton(
+                                onClick = { navController.navigate(NavigationItem.Edit.route) },
+                                shape = CircleShape,
+                                modifier = Modifier
+                                    .align(Alignment.Center)
+                                    .size(80.dp)
+                                    .offset(y = 20.dp)
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Filled.Add,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(45.dp)
+                                )
+                            }
+                        }
+                    },
                 ) { innerPadding ->
                     Column(
                         modifier = Modifier
@@ -65,42 +84,5 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    @Composable
-    fun BottomBarNavigation(navController: NavController, items: List<NavigationItem>) {
-        Box (
-            Modifier.background(MaterialTheme.colorScheme.primary)
-        ) {
-
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-
-                items.forEach {
-                    IconButton(onClick = {
-                        navController.navigate(it.route)
-                    }) {
-                        Icon(
-                            imageVector = it.icon,
-                            contentDescription = null
-                        )
-                    }
-                }
-
-            }
-        }
-
-    }
-
-
-    @Preview(showBackground = true)
-    @Composable
-    fun GreetingPreview() {
-        BottomBarNavigation(navController = rememberNavController(), arrayListOf(
-            NavigationItem.Home,
-            NavigationItem.Edit,
-        ))
-    }
 }
 

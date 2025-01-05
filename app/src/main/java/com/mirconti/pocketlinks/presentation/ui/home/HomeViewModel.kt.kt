@@ -31,8 +31,9 @@ class HomeViewModel  @Inject constructor(val getAllLinksUC: GetAllLinksUC, val l
             is HomeAction.Load -> {
                 viewModelScope.launch {
                     _state.value = HomeState(isLoading = true)
-                    val allLinks = withContext(Dispatchers.IO) { getAllLinksUC() }
-                    _state.value = HomeState(isLoading = false, links = allLinks)
+                    withContext(Dispatchers.IO) { getAllLinksUC() }.let {
+                        _state.value = HomeState(isLoading = false, links = it)
+                    }
                 }
             }
         }

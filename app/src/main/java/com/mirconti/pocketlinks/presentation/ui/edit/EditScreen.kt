@@ -26,12 +26,12 @@ fun EditScreen(navController: NavController) {
     viewModel.linkModel.value?.let {
         val name = remember { mutableStateOf(TextFieldValue(it.name)) }
         val url = remember { mutableStateOf(TextFieldValue(it.url)) }
-        val category = remember { mutableStateOf(TextFieldValue(it.category ?: "")) }
-        val tag = remember { mutableStateOf(TextFieldValue(it.tag ?: "")) }
+        val category = remember { mutableStateOf(TextFieldValue("")) }
+        val isFavourite = remember { mutableStateOf(false) }
 
         Column {
             Text(
-                text = PocketApplication.instance.getString(if (isnew) R.string.newitem else R.string.edit),
+                text = PocketApplication.getString(if (isnew) R.string.newitem else R.string.edit),
                 textAlign = TextAlign.Center,
                 color = Color.White
             )
@@ -40,7 +40,7 @@ fun EditScreen(navController: NavController) {
                 onValueChange = {
                     name.value = it
                 },
-                label = { Text(text = "Your Label") },
+                label = { Text(text = PocketApplication.getString(R.string.name)) },
                 placeholder = { Text(text = "") },
             )
             TextField(
@@ -48,7 +48,7 @@ fun EditScreen(navController: NavController) {
                 onValueChange = {
                     url.value = it
                 },
-                label = { Text(text = "Your Label") },
+                label = { Text(text = PocketApplication.getString(R.string.url)) },
                 placeholder = { Text(text = "") },
             )
             TextField(
@@ -56,17 +56,10 @@ fun EditScreen(navController: NavController) {
                 onValueChange = {
                     category.value = it
                 },
-                label = { Text(text = "Your Label") },
+                label = { Text(text = PocketApplication.getString(R.string.addCategory)) },
                 placeholder = { Text(text = "") },
             )
-            TextField(
-                value = tag.value,
-                onValueChange = {
-                    tag.value = it
-                },
-                label = { Text(text = "Your Label") },
-                placeholder = { Text(text = "") },
-            )
+
         }
     }
 

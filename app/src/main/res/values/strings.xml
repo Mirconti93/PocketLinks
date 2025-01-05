@@ -4,4 +4,8 @@
     <string name="newitem">Nuovo</string>
 
     <string name="noitems">Non hai ancora inserito link, clicca sul bottone per aggiungerne uno nuovo</string>
+
+    <string name="name">Nome</string>
+    <string name="url">Url</string>
+    <string name="addCategory">Aggiungi categoria</string>
 </resources>

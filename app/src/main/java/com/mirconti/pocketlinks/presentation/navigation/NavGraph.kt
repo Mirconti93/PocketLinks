@@ -5,7 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.mircontapp.sportalbum.presentation.viewmodels.MainViewModel
+import com.mirconti.pocketlinks.presentation.navigation.Routes
+import com.mirconti.pocketlinks.presentation.ui.edit.EditScreen
 import com.mirconti.pocketlinks.presentation.ui.home.HomeScreen
 
 @ExperimentalMaterial3Api
@@ -13,13 +14,13 @@ import com.mirconti.pocketlinks.presentation.ui.home.HomeScreen
 fun NavGraph(navController: NavHostController){
     NavHost(
         navController = navController,
-        startDestination = NavigationItem.Home.route)
+        startDestination = NavigationItem.Home)
     {
-        composable(route = NavigationItem.Home.route){
+        composable<Routes.Home> {
             HomeScreen(navController = navController)
         }
-        composable(route = NavigationItem.Edit.route){
-            HomeScreen(navController = navController)
+        composable<Routes.Edit>{
+            EditScreen(navController = navController)
         }
     }
 }
