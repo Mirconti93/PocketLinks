@@ -14,11 +14,14 @@ import javax.inject.Inject
 
 class EditViewModel @Inject constructor(val insertCategoriesUC: InsertCategoryUC, val insertLinkUC: InsertLinkUC): ViewModel()  {
 
-    val state : StateFlow<HomeState> get() =  _state
-    private val _state: MutableStateFlow<HomeState> = MutableStateFlow(HomeState())
+    val state : StateFlow<EditState> get() =  _state
+    private val _state: MutableStateFlow<EditState> = MutableStateFlow(EditState())
 
     fun onAction(editAction: EditAction) {
         when (editAction) {
+            is EditAction.Init -> {
+                _state.value = _state.value.copy(isLoading = false, linkModel = editAction.linkModel)
+            }
             is EditAction.Load -> _state.value = _state.value.copy(isLoading = true)
             is EditAction.AddLink -> {
                 onAction(EditAction.Load)

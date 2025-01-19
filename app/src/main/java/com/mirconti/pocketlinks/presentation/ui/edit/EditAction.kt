@@ -6,5 +6,6 @@ import com.mirconti.pocketlinks.presentation.ui.home.HomeAction
 
 sealed class EditAction {
     object Load: EditAction()
+    data class Init(val linkModel: LinkModel?): EditAction()
     data class AddLink(val linkModel: LinkModel, val categories: List<CategoryModel>?): EditAction()
 }

@@ -8,6 +8,6 @@ sealed class Routes {
     object Home
 
     @Serializable
-    data class Edit(val link: LinkModel?)
+    data class Edit(val link: String?)
 
 }

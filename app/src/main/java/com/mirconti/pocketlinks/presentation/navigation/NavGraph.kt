@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.toRoute
 import com.mirconti.pocketlinks.presentation.navigation.Routes
 import com.mirconti.pocketlinks.presentation.ui.edit.EditScreen
 import com.mirconti.pocketlinks.presentation.ui.home.HomeScreen
@@ -20,7 +21,7 @@ fun NavGraph(navController: NavHostController){
             HomeScreen(navController = navController)
         }
         composable<Routes.Edit>{
-            EditScreen(navController = navController)
+            EditScreen(navController = navController, it.toRoute<Routes.Edit>().link)
         }
     }
 }
