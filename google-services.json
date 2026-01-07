@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "800552092203",
+    "firebase_url": "https://bupi-94c93-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "bupi-94c93",
+    "storage_bucket": "bupi-94c93.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800552092203:android:e3485e4faaa0476c54206e",
+        "android_client_info": {
+          "package_name": "com.example.bupialbum"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJDX5NQNkFBKYyOWVD9MQSaEcp3Wp_EZI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800552092203:android:05ea9e2abe31e94754206e",
+        "android_client_info": {
+          "package_name": "com.mircontapp.sportalbum"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJDX5NQNkFBKYyOWVD9MQSaEcp3Wp_EZI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800552092203:android:5f1a2c0934138c7b54206e",
+        "android_client_info": {
+          "package_name": "com.mirconti.pocketlinks"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJDX5NQNkFBKYyOWVD9MQSaEcp3Wp_EZI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
